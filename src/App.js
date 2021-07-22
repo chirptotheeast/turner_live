@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+// import Exercise from './components/Exercise'
+import { useState, useEffect } from 'react';
+import { truncate } from 'node:fs';
+
 
 function App() {
+  const [name, setName] = useState('Candidate')
+
+  // let name = 'Candidate';
+  const titleUpdate = () => {
+  document.title = `Welcome, ${name}!`; 
+ }
+
+ useEffect(titleUpdate, [name])
+
+  const nameUpdater = (e) => {
+    setName(e)
+  }
+
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <label>Enter your name:</label>
+      <input value={name} onChange={(e) => nameUpdater(e.target.value)} />
     </div>
   );
 }
